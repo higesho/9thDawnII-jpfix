@@ -11,10 +11,19 @@ Steam 版「9th Dawn II」の会話・アイテム・クエスト・メニュー
 ## 導入方法
 1. [Releases](https://github.com/higesho/9thDawnII-jpfix/releases/latest) から zip をダウンロードして展開します。
 2. Steam のライブラリで 9th Dawn II を右クリック →「管理」→「ローカルファイルを閲覧」で、ゲームフォルダ（`ninthdawnii.exe` があるフォルダ）を開きます。
-3. zip の中の `version.dll` と `jp` フォルダを、ゲームフォルダにそのままコピーします。
+3. zip の中の `version.dll` と `jp` フォルダを、ゲームフォルダにそのままコピーします（`ninthdawnii.exe` と `version.dll` が同じフォルダに並べば OK）。
 4. いつもどおり Steam からゲームを起動します。
 
 解除するには、ゲームフォルダの `version.dll` を削除してください。
+
+## 日本語にならないとき
+ゲームを一度起動したあと、`jp\jpfix.log` ができているか確認してください。
+
+- **jpfix.log がない**：パッチが読み込まれていません。
+  - `version.dll` が `ninthdawnii.exe` と同じフォルダにあるか確認してください。
+  - ウイルス対策ソフトが `version.dll` を削除・隔離していないか確認してください。
+  - Steam Deck / Linux（Proton）では、起動オプションに `WINEDLLOVERRIDES="version=n,b" %command%` を入力してください。
+- **jpfix.log がある**：「バイト不一致」とあればゲームのバージョンが対応版と違います。それ以外は、ログを添えて Issues でお知らせください。
 
 ## 対応バージョン
 Steam 版 9th Dawn II（Steam ビルドID 1411474、`ninthdawnii.exe` SHA-256 `74b59f8a297727cad84a42dec53fed78b3f5ac4cfbfaa2c9d54b1ba74c8a69e3`）。

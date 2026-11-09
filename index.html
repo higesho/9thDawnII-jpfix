@@ -93,7 +93,7 @@
     <h1>9th Dawn II 非公式日本語化パッチ</h1>
     <p class="lead">Steam 版「9th Dawn II」の会話・アイテム・クエスト・メニューなどを日本語で表示します。ゲームのファイルは書き換えず、ファイルを置くだけで導入できます。</p>
     <a class="btn" href="https://github.com/higesho/9thDawnII-jpfix/releases/latest">ダウンロード（最新版）</a>
-    <span class="ver">v0.1.0 ／ zip 約3.5MB</span>
+    <span class="ver">v0.1.1 ／ zip 約3.5MB</span>
   </div>
 </header>
 
@@ -133,10 +133,28 @@
     <ol class="steps">
       <li><a href="https://github.com/higesho/9thDawnII-jpfix/releases/latest">リリースページ</a>から zip をダウンロードして展開します。</li>
       <li>Steam のライブラリで 9th Dawn II を右クリック →「管理」→「ローカルファイルを閲覧」で、ゲームフォルダ（<code>ninthdawnii.exe</code> があるフォルダ）を開きます。</li>
-      <li>zip の中の <code>version.dll</code> と <code>jp</code> フォルダを、ゲームフォルダにそのままコピーします。</li>
+      <li>zip の中の <code>version.dll</code> と <code>jp</code> フォルダを、ゲームフォルダにそのままコピーします。<code>ninthdawnii.exe</code> と <code>version.dll</code> が同じフォルダに並べば正しく導入できています。</li>
       <li>いつもどおり Steam からゲームを起動します。</li>
     </ol>
     <p><strong>解除するには</strong> ゲームフォルダの <code>version.dll</code> を削除してください（<code>jp</code> フォルダも削除して構いません）。</p>
+  </section>
+
+  <section>
+    <h2>日本語にならないとき</h2>
+    <p>ゲームを一度起動したあと、ゲームフォルダの <code>jp</code> フォルダに <code>jpfix.log</code> ができているか確認してください。</p>
+    <div class="card">
+      <p style="margin:0"><strong>jpfix.log がない場合</strong>（パッチが読み込まれていません）</p>
+      <ul>
+        <li><code>version.dll</code> が <code>ninthdawnii.exe</code> と同じフォルダにあるか確認してください。zip を展開してできたフォルダごとコピーすると動きません。</li>
+        <li>ウイルス対策ソフトが <code>version.dll</code> を削除・隔離していないか確認してください。</li>
+        <li>Steam Deck / Linux（Proton）では、ゲームのプロパティの起動オプションに <code>WINEDLLOVERRIDES="version=n,b" %command%</code> を入力してください。</li>
+      </ul>
+      <p style="margin:.8em 0 0"><strong>jpfix.log がある場合</strong></p>
+      <ul>
+        <li>「バイト不一致」と書かれていれば、ゲームのバージョンが対応版と違います（ベータ版ブランチを選んでいないかも確認してください）。</li>
+        <li>それ以外の場合は、<code>jpfix.log</code> の内容を添えて <a href="https://github.com/higesho/9thDawnII-jpfix/issues">Issues</a> でお知らせください。</li>
+      </ul>
+    </div>
   </section>
 
   <section>
