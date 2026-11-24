@@ -244,7 +244,9 @@ static std::unordered_map<uint32_t, uint16_t> g_charmap; // Unicode -> index
 static std::unordered_set<std::string> g_seen;
 static FILE* g_untr = nullptr;
 static bool g_dumpUntranslated = true;
-static std::string g_testPrefix; // config.ini の test_prefix (エンコード済み)
+#ifdef JPFIX_TEST
+static std::string g_testPrefix; // config.ini の test_prefix (エンコード済み)。試験版だけ
+#endif
 
 static std::string unescape(const std::string& s) {
     std::string o;
@@ -607,7 +609,9 @@ static const std::string* get_translation(const std::string& key) {
             if (translate_text(body, tr)) result = key.substr(0, cp) + tr;
             else {
                 log_untranslated(body);
+#ifdef JPFIX_TEST
                 if (!g_testPrefix.empty()) result = key.substr(0, cp) + g_testPrefix + body;
+#endif
             }
         }
         if (g_cache.size() > 50000) g_cache.clear();
@@ -1046,11 +1050,15 @@ static void init(HMODULE self) {
         std::vector<std::string> cfg;
         if (read_lines("config.ini", cfg)) {
             for (auto& l : cfg) {
+#ifdef JPFIX_TEST
                 if (l.compare(0, 12, "test_prefix=") == 0) g_testPrefix = encode_ja(l.substr(12));
+#endif
                 if (l.compare(0, 18, "dump_untranslated=") == 0) g_dumpUntranslated = l[18] == '1';
             }
         }
+#ifdef JPFIX_TEST
         if (!g_testPrefix.empty()) logf("テストモード: 未翻訳文字列に接頭辞を付けます");
+#endif
     }
     g_untr = open_jp("untranslated.txt", L"ab");
     apply_patches();
